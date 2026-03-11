@@ -16,10 +16,10 @@ export function RatingScale({ label, value, onChange }: Props) {
           <button
             key={n}
             onClick={() => onChange(n)}
-            className={`flex-1 flex flex-col items-center gap-1 py-3 px-1 rounded-2xl border transition-all duration-200 ${
+            className={`flex-1 flex flex-col items-center gap-1.5 py-3 px-1 rounded-xl border transition-all duration-300 ${
               value === n
-                ? "border-primary bg-primary/10 scale-105 animate-pulse-orange"
-                : "border-border bg-secondary hover:border-primary/40"
+                ? "border-primary bg-primary/10 scale-105 shadow-lg shadow-primary/20"
+                : "border-border/60 bg-secondary/50 hover:border-primary/30 hover:bg-secondary"
             }`}
           >
             <span className="text-xl sm:text-2xl">{emojis[n - 1]}</span>

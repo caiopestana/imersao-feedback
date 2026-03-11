@@ -25,14 +25,13 @@ export function StructureStep({ data, updateData, onNext, onPrev }: Props) {
 
   return (
     <div className="glass-card p-6 sm:p-8 space-y-6">
-      <h2 className="text-xl font-semibold text-foreground">Estrutura e Experiência</h2>
+      <div className="space-y-1">
+        <h2 className="text-xl font-semibold text-foreground">Estrutura e Experiência</h2>
+        <p className="text-sm text-muted-foreground font-light">Avalie a organização do evento</p>
+      </div>
       <div className="space-y-6">
-        <RatingScale
-          label="Como avalia a estrutura do evento (espaço, organização e coffee)?"
-          value={data.q6}
-          onChange={(v) => updateData({ q6: v })}
-        />
-        <div className="space-y-1.5">
+        <RatingScale label="Como avalia a estrutura do evento (espaço, organização e coffee)?" value={data.q6} onChange={(v) => updateData({ q6: v })} />
+        <div className="space-y-2">
           <label className="text-sm font-medium text-foreground">
             Tem alguma sugestão de melhoria para as próximas edições?
           </label>
@@ -41,7 +40,7 @@ export function StructureStep({ data, updateData, onNext, onPrev }: Props) {
             onChange={(e) => updateData({ q7: e.target.value })}
             placeholder="Sua sugestão é muito valiosa..."
             rows={3}
-            className="w-full px-4 py-3 rounded-2xl bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-ring resize-none transition-all"
+            className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/60 text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 resize-none transition-all duration-300"
           />
         </div>
       </div>

@@ -13,14 +13,14 @@ function InputField({ label, value, onChange, type = "text", placeholder }: {
   label: string; value: string; onChange: (v: string) => void; type?: string; placeholder?: string;
 }) {
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-2">
       <label className="text-sm font-medium text-foreground">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full h-11 px-4 rounded-2xl bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+        className="w-full h-11 px-4 rounded-xl bg-secondary/50 border border-border/60 text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all duration-300"
       />
     </div>
   );
@@ -43,8 +43,11 @@ export function IdentificationStep({ data, updateData, onNext }: Props) {
   };
 
   return (
-    <div className="glass-card p-6 sm:p-8 space-y-5">
-      <h2 className="text-xl font-semibold text-foreground">Identificação</h2>
+    <div className="glass-card p-6 sm:p-8 space-y-6">
+      <div className="space-y-1">
+        <h2 className="text-xl font-semibold text-foreground">Identificação</h2>
+        <p className="text-sm text-muted-foreground font-light">Conte-nos um pouco sobre você</p>
+      </div>
       <div className="space-y-4">
         <InputField label="Nome completo *" value={data.name || ""} onChange={(v) => updateData({ name: v })} placeholder="Seu nome" />
         <InputField label="E-mail *" value={data.email || ""} onChange={(v) => updateData({ email: v })} type="email" placeholder="seu@email.com" />
