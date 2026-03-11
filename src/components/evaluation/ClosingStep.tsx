@@ -12,8 +12,11 @@ interface Props {
 export function ClosingStep({ data, updateData, onSubmit, onPrev }: Props) {
   return (
     <div className="glass-card p-6 sm:p-8 space-y-6">
-      <h2 className="text-xl font-semibold text-foreground">Encerramento</h2>
-      <div className="space-y-1.5">
+      <div className="space-y-1">
+        <h2 className="text-xl font-semibold text-foreground">Encerramento</h2>
+        <p className="text-sm text-muted-foreground font-light">Quase lá! Última etapa</p>
+      </div>
+      <div className="space-y-2">
         <label className="text-sm font-medium text-foreground">
           Quer deixar uma mensagem para a equipe StackX? <span className="text-muted-foreground">(opcional)</span>
         </label>
@@ -22,7 +25,7 @@ export function ClosingStep({ data, updateData, onSubmit, onPrev }: Props) {
           onChange={(e) => updateData({ q11: e.target.value })}
           placeholder="Sua mensagem aqui..."
           rows={4}
-          className="w-full px-4 py-3 rounded-2xl bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-ring resize-none transition-all"
+          className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/60 text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 resize-none transition-all duration-300"
         />
       </div>
       <div className="flex justify-between">

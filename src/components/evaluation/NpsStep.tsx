@@ -33,14 +33,17 @@ export function NpsStep({ data, updateData, onNext, onPrev }: Props) {
   };
 
   const getNpsColor = (n: number) => {
-    if (n <= 6) return "border-nps-detractor bg-nps-detractor/10 text-nps-detractor";
-    if (n <= 8) return "border-nps-passive bg-nps-passive/10 text-nps-passive";
-    return "border-nps-promoter bg-nps-promoter/10 text-nps-promoter";
+    if (n <= 6) return "border-nps-detractor bg-nps-detractor/10 text-nps-detractor shadow-lg shadow-nps-detractor/10";
+    if (n <= 8) return "border-nps-passive bg-nps-passive/10 text-nps-passive shadow-lg shadow-nps-passive/10";
+    return "border-nps-promoter bg-nps-promoter/10 text-nps-promoter shadow-lg shadow-nps-promoter/10";
   };
 
   return (
     <div className="glass-card p-6 sm:p-8 space-y-6">
-      <h2 className="text-xl font-semibold text-foreground">NPS e Prova Social</h2>
+      <div className="space-y-1">
+        <h2 className="text-xl font-semibold text-foreground">NPS e Prova Social</h2>
+        <p className="text-sm text-muted-foreground font-light">Nos ajude a medir sua satisfação</p>
+      </div>
       <div className="space-y-6">
         <div className="space-y-3">
           <p className="text-sm font-medium text-foreground">
@@ -51,10 +54,10 @@ export function NpsStep({ data, updateData, onNext, onPrev }: Props) {
               <button
                 key={i}
                 onClick={() => updateData({ q8: i })}
-                className={`aspect-square flex items-center justify-center rounded-xl border text-xs sm:text-sm font-medium transition-all duration-200 ${
+                className={`aspect-square flex items-center justify-center rounded-lg border text-xs sm:text-sm font-medium transition-all duration-300 ${
                   data.q8 === i
-                    ? `${getNpsColor(i)} scale-110 shadow-md`
-                    : "border-border bg-secondary text-muted-foreground hover:border-primary/40"
+                    ? `${getNpsColor(i)} scale-110`
+                    : "border-border/60 bg-secondary/50 text-muted-foreground hover:border-primary/30 hover:bg-secondary"
                 }`}
               >
                 {i}
@@ -67,14 +70,14 @@ export function NpsStep({ data, updateData, onNext, onPrev }: Props) {
           </div>
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <label className="text-sm font-medium text-foreground">Por que você deu essa nota?</label>
           <textarea
             value={data.q9 || ""}
             onChange={(e) => updateData({ q9: e.target.value })}
             placeholder="Compartilhe o motivo..."
             rows={2}
-            className="w-full px-4 py-3 rounded-2xl bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-ring resize-none transition-all"
+            className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/60 text-foreground placeholder:text-muted-foreground text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 resize-none transition-all duration-300"
           />
         </div>
 
@@ -87,10 +90,10 @@ export function NpsStep({ data, updateData, onNext, onPrev }: Props) {
               <button
                 key={opt.value}
                 onClick={() => updateData({ q10: opt.value })}
-                className={`flex-1 py-3 px-4 rounded-2xl border text-sm font-medium transition-all duration-200 ${
+                className={`flex-1 py-3 px-4 rounded-xl border text-sm font-medium transition-all duration-300 ${
                   data.q10 === opt.value
-                    ? "border-primary bg-primary/10 text-foreground scale-[1.02]"
-                    : "border-border bg-secondary text-muted-foreground hover:border-primary/40"
+                    ? "border-primary bg-primary/10 text-foreground scale-[1.02] shadow-lg shadow-primary/10"
+                    : "border-border/60 bg-secondary/50 text-muted-foreground hover:border-primary/30 hover:bg-secondary"
                 }`}
               >
                 {opt.label}

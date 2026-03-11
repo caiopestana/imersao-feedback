@@ -25,23 +25,14 @@ export function ContentStep({ data, updateData, onNext, onPrev }: Props) {
 
   return (
     <div className="glass-card p-6 sm:p-8 space-y-6">
-      <h2 className="text-xl font-semibold text-foreground">Conteúdo e Aprendizado</h2>
+      <div className="space-y-1">
+        <h2 className="text-xl font-semibold text-foreground">Conteúdo e Aprendizado</h2>
+        <p className="text-sm text-muted-foreground font-light">Avalie a qualidade do conteúdo</p>
+      </div>
       <div className="space-y-6">
-        <RatingScale
-          label="O conteúdo foi relevante para sua rotina profissional?"
-          value={data.q1}
-          onChange={(v) => updateData({ q1: v })}
-        />
-        <RatingScale
-          label="Como avalia a parte prática (exercícios e ferramentas)?"
-          value={data.q2}
-          onChange={(v) => updateData({ q2: v })}
-        />
-        <RatingScale
-          label="Você se sente mais preparado para usar IA no seu dia a dia?"
-          value={data.q3}
-          onChange={(v) => updateData({ q3: v })}
-        />
+        <RatingScale label="O conteúdo foi relevante para sua rotina profissional?" value={data.q1} onChange={(v) => updateData({ q1: v })} />
+        <RatingScale label="Como avalia a parte prática (exercícios e ferramentas)?" value={data.q2} onChange={(v) => updateData({ q2: v })} />
+        <RatingScale label="Você se sente mais preparado para usar IA no seu dia a dia?" value={data.q3} onChange={(v) => updateData({ q3: v })} />
       </div>
       {error && <p className="text-sm text-destructive font-medium">{error}</p>}
       <div className="flex justify-between">
