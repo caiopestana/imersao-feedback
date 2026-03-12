@@ -18,9 +18,9 @@ export function ConfirmationStep() {
           Seu feedback é o combustível que melhora cada imersão.
         </p>
       </div>
-      <Button variant="outline" size="lg" asChild className="border-border/60 hover:border-primary/40">
+      <Button variant="outline" size="lg" asChild className="border border-white/20 hover:border-white/40 hover:bg-white/5 bg-transparent px-10 py-7 h-auto text-base rounded-full">
         <a href="https://stackx.com.br" target="_blank" rel="noopener noreferrer">
-          Conheça outros cursos da StackX →
+          Conheça mais da StackX
         </a>
       </Button>
     </div>

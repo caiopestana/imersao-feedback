@@ -1,5 +1,4 @@
 import { useState, useCallback } from "react";
-import { ThemeToggle } from "@/components/evaluation/ThemeToggle";
 import { ProgressBar } from "@/components/evaluation/ProgressBar";
 import { WelcomeStep } from "@/components/evaluation/WelcomeStep";
 import { IdentificationStep } from "@/components/evaluation/IdentificationStep";
@@ -49,33 +48,64 @@ const Index = () => {
   const isWelcomeOrConfirmation = step === 0 || step === TOTAL_STEPS - 1;
 
   return (
-    <div className="min-h-screen grid-bg flex flex-col relative overflow-hidden">
-      {/* Ambient glow effects */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/8 rounded-full blur-[120px] pointer-events-none" />
-      <div className="fixed bottom-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+    <div className="min-h-screen grid-bg flex flex-col relative overflow-hidden bg-background text-foreground">
+      <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#3A9AFF]/30 blur-[150px] pointer-events-none rounded-[100%]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#2845D6]/30 blur-[120px] pointer-events-none rounded-[100%]" />
 
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 sm:px-6 bg-background/60 backdrop-blur-xl border-b border-border/40">
-        <div className="text-sm font-bold text-foreground tracking-tight">
-          <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">StackX</span>
-        </div>
-        <ThemeToggle />
+      {/* Header with Linked Logo */}
+      <header className="absolute top-0 w-full z-50 flex items-center px-6 py-6">
+        <a href="https://stackx.com.br" target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-80 transition-opacity">
+          <img src="/logo.png" alt="StackX Logo" className="h-10 w-auto rounded-md" />
+        </a>
       </header>
 
-      {!isWelcomeOrConfirmation && (
-        <ProgressBar current={step} total={TOTAL_STEPS - 2} />
-      )}
+      <main className="flex-1 flex flex-col items-center pt-32 pb-12 px-4 relative z-10 w-full max-w-7xl mx-auto">
+        
+        {/* Hero Section */}
+        {isWelcomeOrConfirmation ? (
+          <div className="text-center mb-16 mt-8 animate-fade-in-up">
+            <span className="inline-block border border-border/50 bg-card/30 rounded-full px-3 py-1 text-xs font-semibold mb-6 tracking-wide">
+              Avaliação de Feedback
+            </span>
+            <h1 className="text-4xl md:text-6xl font-normal tracking-tight text-foreground leading-tight mb-4 max-w-4xl mx-auto">
+              <span className="inline-block">Como foi sua experiência</span>
+              <br />
+              <span className="text-primary inline-block">na Imersão em IA?</span>
+            </h1>
+            <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
+              Leva menos de 3 minutos. Sua opinião nos ajuda a moldar o futuro do projeto e transforma as próximas edições do nosso evento.
+            </p>
+          </div>
+        ) : (
+          <div className="w-full max-w-2xl mb-8 mt-12">
+            <ProgressBar current={step} total={TOTAL_STEPS - 2} />
+          </div>
+        )}
 
-      <main className="flex-1 flex items-center justify-center px-4 pt-20 pb-8 relative z-10">
-        <div className="w-full max-w-lg animate-fade-in-up" key={step}>
-          {step === 0 && <WelcomeStep onStart={next} />}
-          {step === 1 && <IdentificationStep data={data} updateData={updateData} onNext={next} />}
-          {step === 2 && <ContentStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
-          {step === 3 && <MethodologyStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
-          {step === 4 && <StructureStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
-          {step === 5 && <NpsStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
-          {step === 6 && <ClosingStep data={data} updateData={updateData} onSubmit={handleSubmit} onPrev={prev} />}
-          {step === 7 && <ConfirmationStep />}
+        {/* Dynamic Step Content rendered inside a card container */}
+        <div className={`w-full ${isWelcomeOrConfirmation ? 'max-w-md' : 'max-w-2xl'} animate-fade-in-up`} key={step}>
+          {step === 0 ? (
+            <div className="relative z-10 flex justify-center">
+              <WelcomeStep onStart={next} />
+            </div>
+          ) : (
+            <div className="bg-card/40 backdrop-blur-2xl border border-white/10 p-8 sm:p-12 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] relative overflow-hidden group">
+              {/* Subtle card glow */}
+              <div className="absolute inset-x-0 -top-px h-px w-1/2 mx-auto bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-50"></div>
+              
+              <div className="relative z-10">
+                {step === 1 && <IdentificationStep data={data} updateData={updateData} onNext={next} />}
+                {step === 2 && <ContentStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
+                {step === 3 && <MethodologyStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
+                {step === 4 && <StructureStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
+                {step === 5 && <NpsStep data={data} updateData={updateData} onNext={next} onPrev={prev} />}
+                {step === 6 && <ClosingStep data={data} updateData={updateData} onSubmit={handleSubmit} onPrev={prev} />}
+                {step === 7 && <ConfirmationStep />}
+              </div>
+            </div>
+          )}
         </div>
+
       </main>
     </div>
   );

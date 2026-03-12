@@ -39,7 +39,7 @@ export function NpsStep({ data, updateData, onNext, onPrev }: Props) {
   };
 
   return (
-    <div className="glass-card p-6 sm:p-8 space-y-6">
+    <div className="space-y-8 w-full">
       <div className="space-y-1">
         <h2 className="text-xl font-semibold text-foreground">NPS e Prova Social</h2>
         <p className="text-sm text-muted-foreground font-light">Nos ajude a medir sua satisfação</p>

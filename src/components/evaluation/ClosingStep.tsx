@@ -11,7 +11,7 @@ interface Props {
 
 export function ClosingStep({ data, updateData, onSubmit, onPrev }: Props) {
   return (
-    <div className="glass-card p-6 sm:p-8 space-y-6">
+    <div className="space-y-8 w-full">
       <div className="space-y-1">
         <h2 className="text-xl font-semibold text-foreground">Encerramento</h2>
         <p className="text-sm text-muted-foreground font-light">Quase lá! Última etapa</p>
